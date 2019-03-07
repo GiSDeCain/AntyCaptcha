@@ -12,7 +12,7 @@ class Common:
 
     def open_exercise(self, number):
         driver = self.app.driver
-        url = Config.main_page + Config.ex_sub_dir + number
+        url = Config.main_page + Config.ex_sub_dir + str(number)
         driver.get(url)
 
 
