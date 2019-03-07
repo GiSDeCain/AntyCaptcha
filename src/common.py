@@ -31,16 +31,16 @@ class Common:
 
     def check_solution(self):
         driver = self.app.driver
-        table = driver.find_elements_by_xpath('//table/tbody')
-        tabellen = len(table)
-        for i in range(tabellen):
-            number = 2
-            solution = table.driver.find_element_by_xpath('tr[' + str(number) + ']/td[2]/code').text
-            if solution.contains('Trail set to: '):
-                return solution
-            i += 1
-            number += 1
-        print(solution)
+        table = driver.find_elements_by_xpath('//tbody/tr/td')
+        tabellen = len(table) / 3
+        print("długość tabeli = " + str(tabellen))
+        for i in range(int(tabellen)):
+            i += 2
+            solution = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]')
+            if 'Trail set to:' in solution.find_element_by_xpath('//code').text:
+                return
+            else:
+                i += 1
 
     def check_button(self):
         # driver = self.app.driver
