@@ -32,15 +32,12 @@ class Common:
     def check_solution(self):
         driver = self.app.driver
         table = driver.find_elements_by_xpath('//tbody/tr/td')
-        tabellen = len(table) / 3
-        print("długość tabeli = " + str(tabellen))
-        for i in range(int(tabellen)):
+        lentabel = len(table) / 3
+        for i in range(int(lentabel)):
             i += 2
-            solution = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]')
-            if 'Trail set to:' in solution.find_element_by_xpath('//code').text:
-                return
-            else:
-                i += 1
+            solution = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
+            solution = solution[14:20]
+            print(solution)
 
     def check_button(self):
         # driver = self.app.driver
