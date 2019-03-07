@@ -23,11 +23,11 @@ class Common:
 
     def click_btn_1(self):
         driver = self.app.driver
-        driver.find_elemen_be_name("btnButton1")
+        driver.find_element_be_name("btnButton1").click()
 
     def click_btn_2(self):
         driver = self.app.driver
-        driver.find_elemen_be_name("btnButton2")
+        driver.find_element_be_name("btnButton2").click()
 
 
 __author__ = 'GiSDeCain'
