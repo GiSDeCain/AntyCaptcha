@@ -39,10 +39,16 @@ class Common:
             solution = solution[14:20]
             print(solution)
 
-    def check_button(self):
-        # driver = self.app.driver
-        # btn1 = driver.find
-        pass
+    def click_button(self, number):
+        driver = self.app.driver
+        number += 1
+        btn = driver.find_element_by_xpath('//tbody/tr[' + str(number) + ']/td[2]/code')
+        btn1 = driver.find_element_by_name('btnButton1')
+        btn2 = driver.find_element_by_name('btnButton2')
+        if 'B1' in btn.text:
+            btn1.click()
+        else:
+            btn2.click()
 
 
 __author__ = 'GiSDeCain'
