@@ -31,16 +31,25 @@ class Common:
             solution = solution[14:20]
             print(solution)
 
-    def click_button(self, number):
+    def click_button(self, step_number):
         driver = self.app.driver
-        number += 1
-        btn = driver.find_element_by_xpath('//tbody/tr[' + str(number) + ']/td[2]/code')
+        step_number += 1
+        btn = driver.find_element_by_xpath('//tbody/tr[' + str(step_number) + ']/td[2]/code')
         btn1 = driver.find_element_by_name('btnButton1')
         btn2 = driver.find_element_by_name('btnButton2')
         if 'B1' in btn.text:
             btn1.click()
         else:
             btn2.click()
+
+    def click_check_solution(self):
+        driver = self.app.driver
+        driver.find_element_by_id('solution').click()
+
+    def check_trail(self):
+        driver = self.app.driver
+        text = driver.find_element_by_class_name('wrap').text
+        return text
 
 
 __author__ = 'GiSDeCain'
