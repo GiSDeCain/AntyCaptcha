@@ -21,14 +21,6 @@ class Common:
         url = Config.main_page + Config.ex_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
         driver.get(url)
 
-    def click_btn_1(self):
-        driver = self.app.driver
-        driver.find_element_be_name("btnButton1").click()
-
-    def click_btn_2(self):
-        driver = self.app.driver
-        driver.find_element_be_name("btnButton2").click()
-
     def check_solution(self):
         driver = self.app.driver
         table = driver.find_elements_by_xpath('//tbody/tr/td')
