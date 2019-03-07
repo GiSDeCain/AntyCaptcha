@@ -10,10 +10,24 @@ class Common:
         driver = self.app.driver
         driver.get(Config.main_page)
 
-    def open_exercise(self, number):
+    def get_seed(self):
         driver = self.app.driver
-        url = Config.main_page + Config.ex_sub_dir + str(number)
+        seed = driver.find_element_by_css_selector('code>em')
+        seed = seed.text
+        return seed
+
+    def open_exercise(self, number, seed):
+        driver = self.app.driver
+        url = Config.main_page + Config.ex_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
         driver.get(url)
+
+    def click_btn_1(self):
+        driver = self.app.driver
+        driver.find_elemen_be_name("btnButton1")
+
+    def click_btn_2(self):
+        driver = self.app.driver
+        driver.find_elemen_be_name("btnButton2")
 
 
 __author__ = 'GiSDeCain'
