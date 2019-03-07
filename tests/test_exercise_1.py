@@ -1,7 +1,7 @@
 
 
 def test_positive(fixture):
-    fixture.common.open_main_page()
+    pass
 
 
 __author__ = 'GiSDeCain'
