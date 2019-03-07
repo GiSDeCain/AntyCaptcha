@@ -31,7 +31,7 @@ class Common:
 
     def check_solution(self):
         driver = self.app.driver
-        table = driver.find_elements_be_xpath('//table/tbody')
+        table = driver.find_elements_by_xpath('//table/tbody')
         tabellen = len(table)
         for i in range(tabellen):
             number = 2
@@ -40,12 +40,12 @@ class Common:
                 return solution
             i += 1
             number += 1
+        print(solution)
 
     def check_button(self):
-        driver = self.app.driver
-        btn1 = driver.find
-
-
+        # driver = self.app.driver
+        # btn1 = driver.find
+        pass
 
 
 __author__ = 'GiSDeCain'
