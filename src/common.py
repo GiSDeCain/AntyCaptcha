@@ -29,5 +29,23 @@ class Common:
         driver = self.app.driver
         driver.find_element_be_name("btnButton2").click()
 
+    def check_solution(self):
+        driver = self.app.driver
+        table = driver.find_elements_be_xpath('//table/tbody')
+        tabellen = len(table)
+        for i in range(tabellen):
+            number = 2
+            solution = table.driver.find_element_by_xpath('tr[' + str(number) + ']/td[2]/code').text
+            if solution.contains('Trail set to: '):
+                return solution
+            i += 1
+            number += 1
+
+    def check_button(self):
+        driver = self.app.driver
+        btn1 = driver.find
+
+
+
 
 __author__ = 'GiSDeCain'
