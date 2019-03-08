@@ -1,5 +1,4 @@
 from config import Config
-import time
 
 
 def test_positive(fixture):
