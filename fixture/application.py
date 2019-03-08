@@ -7,7 +7,7 @@ class Application:
 
     def __init__(self):
         self.driver = WebDriver()
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(2)
         self.driver.get(Config.main_page)
         self.common = Common(self)
         self.common.get_seed()

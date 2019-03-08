@@ -62,8 +62,14 @@ class Common:
     def check_trail(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
+        locator = driver.find_element_by_class_name('wrap').text
+        probe1 = 'b'
+        probe2 = 'Trail'
         try:
-            wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_pass_text))
+            if probe1 in locator:
+                wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_pass_text))
+            else:
+                wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_fail_text))
         finally:
             return driver.find_element_by_class_name('wrap').text
 
