@@ -1,7 +1,6 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from src.common import Common
 from config import Config
-import time
 
 
 class Application:
@@ -15,8 +14,6 @@ class Application:
         self.common.write_seed_to_file()
 
     def destroy(self):
-
-        time.sleep(15)
         self.driver.close()
         self.driver.quit()
 
