@@ -6,6 +6,7 @@ class Config:
     ex_url_param = '?seed='
     test_pass_text = 'OK. Good answer'
     test_fail_text = 'NOT OK.'
+    seed = ''
 
 
 __author__ = 'GiSDeCain'

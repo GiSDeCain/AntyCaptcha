@@ -17,7 +17,12 @@ class Common:
         driver = self.app.driver
         seed = driver.find_element_by_css_selector('code>em')
         seed = seed.text
-        return seed
+        try:
+            file = open("../seed.py", "r+")
+
+            file.writelines("seed = " + '"' + seed + '"')
+        finally:
+            file.close()
 
     def open_exercise(self, number, seed):
         driver = self.app.driver

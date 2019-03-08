@@ -1,23 +1,28 @@
 from config import Config
+import time
+from seed import seed
 
 
 def test_positive(fixture):
-    seed = fixture.common.get_seed()
-    fixture.common.open_exercise(1, seed)
-    fixture.common.click_button(1)
-    fixture.common.click_button(2)
-    fixture.common.click_button(3)
-    fixture.common.click_check_solution()
-    # assert fixture.common.check_trail() == Config.test_pass_text
-    fixture.common.back_to_main_page()
+    step = fixture.common
+    step.get_seed()
+    step.open_exercise(1, seed)
+    time.sleep(5)
+    step.click_button(1)
+    step.click_button(2)
+    step.click_button(3)
+    step.click_check_solution()
+    #assert step.check_trail() == Config.test_pass_text
+    step.back_to_main_page()
 
 
 def test_negative(fixture):
-    seed = fixture.common.get_seed()
-    fixture.common.open_exercise(1, seed)
-    fixture.common.click_check_solution()
-    # assert fixture.common.check_trail() == Config.test_fail_text
-    fixture.common.back_to_main_page()
+    step = fixture.common
+    step.open_exercise(1, seed)
+    time.sleep(5)
+    step.click_check_solution()
+    #assert step.check_trail() == Config.test_fail_text
+    step.back_to_main_page()
 
 
 __author__ = 'GiSDeCain'
