@@ -62,11 +62,16 @@ class Common:
     def check_trail(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
-        locator = driver.find_element_by_class_name('wrap').text
-        probe1 = 'b'
-        probe2 = 'Trail'
+        stepstable = driver.find_elements_by_xpath('//tbody/tr/td')
+        lentabel = len(stepstable) / 3
+        solutiontext = ''
+        controlelement = driver.find_element_by_class_name('wrap').text
+        for i in range(int(lentabel)):
+            i += 2
+            solutiontext = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
+            solutiontext = solutiontext[14:20]
         try:
-            if probe1 in locator:
+            if solutiontext == controlelement:
                 wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_pass_text))
             else:
                 wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_fail_text))
