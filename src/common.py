@@ -47,11 +47,13 @@ class Common:
 
     def click_check_solution(self):
         driver = self.app.driver
-        driver.find_element_by_id('solution').click()
+        wait = WebDriverWait(driver, 10)
+        wait.until(EC.element_to_be_clickable((By.ID, 'solution'))).click()
 
     def check_trail(self):
         driver = self.app.driver
         text = driver.find_element_by_class_name('wrap').text
+        WebDriverWait.until(text != "Trail...")
         return text
 
 
