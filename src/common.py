@@ -52,8 +52,9 @@ class Common:
 
     def check_trail(self):
         driver = self.app.driver
+        wait = WebDriverWait(driver, 10)
         text = driver.find_element_by_class_name('wrap').text
-        WebDriverWait.until(text != "Trail...")
+        wait.until("Trail..." not in text)
         return text
 
 

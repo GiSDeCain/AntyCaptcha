@@ -1,5 +1,4 @@
 from config import Config
-import time
 
 
 def test_positive(fixture):
@@ -11,7 +10,6 @@ def test_positive(fixture):
     fixture.common.click_button(3)
     fixture.common.click_check_solution()
     assert fixture.common.check_trail() == Config.test_pass_text
-    time.sleep(10)
 
 
 __author__ = 'GiSDeCain'
