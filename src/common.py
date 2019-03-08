@@ -33,15 +33,15 @@ class Common:
         url = Config.main_page + Config.ex_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
         driver.get(url)
 
-    def check_solution(self):
-        driver = self.app.driver
-        table = driver.find_elements_by_xpath('//tbody/tr/td')
-        lentabel = len(table) / 3
-        for i in range(int(lentabel)):
-            i += 2
-            solution = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
-            solution = solution[14:20]
-            print(solution)
+    # def check_solution(self):  # This one is an experiment and it's not working yet.
+    #     driver = self.app.driver
+    #     table = driver.find_elements_by_xpath('//tbody/tr/td')
+    #     lentabel = len(table) / 3
+    #     for i in range(int(lentabel)):
+    #         i += 2
+    #         solution = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
+    #         solution = solution[14:20]
+    #         print(solution)  # I have no idea why it's print correctly but if I return it to method it gives "None"
 
     def click_button(self, step_number):
         driver = self.app.driver
@@ -62,9 +62,10 @@ class Common:
     def check_trail(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
-        text = driver.find_element_by_class_name('wrap').text
-        wait.until("Trail..." not in text)
-        return text
+        try:
+            wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_pass_text))
+        finally:
+            return driver.find_element_by_class_name('wrap').text
 
     def back_to_main_page(self):
         driver = self.app.driver
