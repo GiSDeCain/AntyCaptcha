@@ -1,3 +1,4 @@
+from config import Config
 import time
 
 
@@ -14,7 +15,7 @@ def test_positive(fixture):
     time.sleep(10)
     fixture.common.click_check_solution()
     time.sleep(1)
-    assert fixture.common.check_trail() == 'OK. Good answer'
+    assert fixture.common.check_trail() == Config.test_pass_text
     time.sleep(10)
 
 
