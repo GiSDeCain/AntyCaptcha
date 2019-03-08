@@ -57,5 +57,9 @@ class Common:
         wait.until("Trail..." not in text)
         return text
 
+    def back_to_main_page(self):
+        driver = self.app.driver
+        driver.get(Config.main_page)
+
 
 __author__ = 'GiSDeCain'
