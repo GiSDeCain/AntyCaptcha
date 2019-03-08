@@ -1,3 +1,6 @@
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from config import Config
 
 
@@ -33,10 +36,10 @@ class Common:
 
     def click_button(self, step_number):
         driver = self.app.driver
-        step_number += 1
-        btn = driver.find_element_by_xpath('//tbody/tr[' + str(step_number) + ']/td[2]/code')
-        btn1 = driver.find_element_by_name('btnButton1')
-        btn2 = driver.find_element_by_name('btnButton2')
+        wait = WebDriverWait(driver, 10)
+        btn = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code')
+        btn1 = wait.until(EC.element_to_be_clickable((By.ID, 'btnButton1')))
+        btn2 = wait.until(EC.element_to_be_clickable((By.ID, 'btnButton2')))
         if 'B1' in btn.text:
             btn1.click()
         else:
