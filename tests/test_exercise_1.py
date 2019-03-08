@@ -1,11 +1,10 @@
 from config import Config
 import time
-from seed import seed
 
 
 def test_positive(fixture):
     step = fixture.common
-    step.get_seed()
+    seed = step.get_seed()
     step.open_exercise(1, seed)
     time.sleep(5)
     step.click_button(1)
@@ -18,6 +17,7 @@ def test_positive(fixture):
 
 def test_negative(fixture):
     step = fixture.common
+    seed = step.get_seed()
     step.open_exercise(1, seed)
     time.sleep(5)
     step.click_check_solution()

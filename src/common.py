@@ -17,10 +17,14 @@ class Common:
         driver = self.app.driver
         seed = driver.find_element_by_css_selector('code>em')
         seed = seed.text
+        return seed
+
+    def write_seed_to_file(self):
+        driver = self.app.driver
+        seed = driver.find_element_by_css_selector('code>em').text
         try:
             file = open("../seed.py", "r+")
-
-            file.writelines("seed = " + '"' + seed + '"')
+            file.writelines("seed = " + "'" + seed + "'")
         finally:
             file.close()
 
