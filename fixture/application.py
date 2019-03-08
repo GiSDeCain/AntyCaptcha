@@ -15,6 +15,8 @@ class Application:
         self.common.write_seed_to_file()
 
     def destroy(self):
+
+        time.sleep(15)
         self.driver.close()
         self.driver.quit()
 
