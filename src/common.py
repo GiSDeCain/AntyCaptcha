@@ -12,6 +12,7 @@ class Common:
     def open_main_page(self):
         driver = self.app.driver
         driver.get(Config.main_page)
+        assert driver.title == 'AntyCaptcha'
 
     def get_seed(self):
         driver = self.app.driver
@@ -32,12 +33,13 @@ class Common:
         driver = self.app.driver
         url = Config.main_page + Config.ex_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
         driver.get(url)
+        assert ('Exercise ' + str(number)) in driver.find_element_by_class_name('title').text
 
     # def check_solution(self):  # This one is an experiment and it's not working yet.
     #     driver = self.app.driver
     #     table = driver.find_elements_by_xpath('//tbody/tr/td')
-    #     lentabel = len(table) / 3
-    #     for i in range(int(lentabel)):
+    #     len_tabel = len(table) / 3
+    #     for i in range(int(len_tabel)):
     #         i += 2
     #         solution = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
     #         solution = solution[14:20]
@@ -62,16 +64,16 @@ class Common:
     def check_trail(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
-        stepstable = driver.find_elements_by_xpath('//tbody/tr/td')
-        lentabel = len(stepstable) / 3
-        solutiontext = ''
-        controlelement = driver.find_element_by_class_name('wrap').text
-        for i in range(int(lentabel)):
+        steps_table = driver.find_elements_by_xpath('//tbody/tr/td')
+        len_tabel = len(steps_table) / 3
+        solution_text = ''
+        control_element = driver.find_element_by_class_name('wrap').text
+        for i in range(int(len_tabel)):
             i += 2
-            solutiontext = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
-            solutiontext = solutiontext[14:20]
+            solution_text = driver.find_element_by_xpath('//tbody/tr[' + str(i) + ']/td[3]').text
+            solution_text = solution_text[14:20]
         try:
-            if solutiontext == controlelement:
+            if solution_text == control_element:
                 wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_pass_text))
             else:
                 wait.until(EC.text_to_be_present_in_element((By.CLASS_NAME, 'wrap'), Config.test_fail_text))
