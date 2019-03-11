@@ -63,6 +63,17 @@ class Common:
             btn2.click()
             log.info('Button 2 clicked')
 
+    def copy_text(self, step_number):
+        driver = self.app.driver
+        text_to_past = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code[1]').text
+        return text_to_past
+
+    def past_text(self, input_id, text_to_past):
+        driver = self.app.driver
+        textbox = driver.find_element_by_id(str(input_id))
+        textbox.clear()
+        textbox.send_keys(text_to_past)
+
     def click_check_solution(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)

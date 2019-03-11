@@ -6,8 +6,7 @@ def test_positive(fixture):
     seed = step.get_seed()
     step.open_exercise(1, seed)
     for i in range(3):
-        i = 1
-        step.click_button(i)
+        step.click_button(i + 1)
         i += 1
     step.click_check_solution()
     assert step.check_trail() == Config.test_pass_text

@@ -1,9 +1,32 @@
+from config import Config
 import time
 
 
-def test_exercise_2(fixture):
-    # fixture.common.open_exercise(2)
+def test_positive(fixture):
+    step = fixture.common
+    seed = step.get_seed()
+    step.open_exercise(2, seed)
+    text = step.copy_text(1)
+    step.past_text('t14', text)
+    step.click_button(2)
+    step.click_check_solution()
     time.sleep(5)
+    step.check_trail()
+    assert step.check_trail() == Config.test_pass_text
+    step.back_to_main_page()
+
+
+def test_negative(fixture):
+    step = fixture.common
+    seed = step.get_seed()
+    step.open_exercise(2, seed)
+    step.past_text('t14', 'test')
+    step.click_button(2)
+    step.click_check_solution()
+    time.sleep(5)
+    step.check_trail()
+    assert step.check_trail() == Config.test_fail_text
+    step.back_to_main_page()
 
 
 __author__ = 'GiSDeCain'
