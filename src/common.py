@@ -1,6 +1,7 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+import logging as log
 from config import Config
 
 
@@ -12,12 +13,14 @@ class Common:
     def open_main_page(self):
         driver = self.app.driver
         driver.get(Config.main_page)
-        assert driver.title == 'AntyCaptcha'
+        assert driver.title == Config.main_page_title
+        log.info('Page url: ' + Config.main_page)
 
     def get_seed(self):
         driver = self.app.driver
         seed = driver.find_element_by_css_selector('code>em')
         seed = seed.text
+        log.info('Seed: ' + seed)
         return seed
 
     def write_seed_to_file(self):
@@ -26,6 +29,7 @@ class Common:
         file = open("../seed.py", "r+")
         try:
             file.writelines("seed = " + "'" + seed + "'")
+            log.info('Seed write to file.')
         finally:
             file.close()
 
@@ -34,6 +38,7 @@ class Common:
         url = Config.main_page + Config.ex_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
         driver.get(url)
         assert ('Exercise ' + str(number)) in driver.find_element_by_class_name('title').text
+        log.info('Exercise ' + str(number) + ' opened successful')
 
     # def check_solution(self):  # This one is an experiment and it's not working yet.
     #     driver = self.app.driver
@@ -53,13 +58,16 @@ class Common:
         btn2 = wait.until(EC.element_to_be_clickable((By.ID, 'btnButton2')))
         if 'B1' in btn.text:
             btn1.click()
+            log.info('Button 1 clicked')
         else:
             btn2.click()
+            log.info('Button 2 clicked')
 
     def click_check_solution(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
         wait.until(EC.element_to_be_clickable((By.ID, 'solution'))).click()
+        log.info('Checking solution...')
 
     def check_trail(self):
         driver = self.app.driver
@@ -81,8 +89,7 @@ class Common:
             return driver.find_element_by_class_name('wrap').text
 
     def back_to_main_page(self):
-        driver = self.app.driver
-        driver.get(Config.main_page)
+        Common.open_main_page(self)
 
 
 __author__ = 'GiSDeCain'
