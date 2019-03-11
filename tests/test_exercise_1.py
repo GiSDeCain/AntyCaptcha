@@ -5,9 +5,10 @@ def test_positive(fixture):
     step = fixture.common
     seed = step.get_seed()
     step.open_exercise(1, seed)
-    step.click_button(1)
-    step.click_button(2)
-    step.click_button(3)
+    for i in range(3):
+        i = 1
+        step.click_button(i)
+        i += 1
     step.click_check_solution()
     assert step.check_trail() == Config.test_pass_text
     step.back_to_main_page()
