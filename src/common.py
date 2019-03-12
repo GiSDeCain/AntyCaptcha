@@ -1,6 +1,7 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 import logging as log
 from config import Config
 
@@ -109,6 +110,13 @@ class Common:
             driver.find_element_by_xpath('//*[@id="btnButton1"]').click()
         else:
             driver.find_element_by_xpath('//*[@id="btnButton2"]').click()
+        log.info('Button clicked: ' + btn.text)
+
+    def dropdown_list(self, text_to_past):
+        driver = self.app.driver
+        element = Select(driver.find_element_by_id('s13'))
+        element.select_by_visible_text(text_to_past)
+        log.info('Element selected form dropdown list: ' + text_to_past)
 
 
 __author__ = 'GiSDeCain'
