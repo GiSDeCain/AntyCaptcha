@@ -102,5 +102,13 @@ class Common:
     def back_to_main_page(self):
         Common.open_main_page(self)
 
+    def click_button_ex2(self, step_number):
+        driver = self.app.driver
+        btn = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code')
+        if "B1" in btn.text:
+            driver.find_element_by_xpath('//*[@id="btnButton1"]').click()
+        else:
+            driver.find_element_by_xpath('//*[@id="btnButton2"]').click()
+
 
 __author__ = 'GiSDeCain'
