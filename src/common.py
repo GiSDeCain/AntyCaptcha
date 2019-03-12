@@ -118,5 +118,15 @@ class Common:
         element.select_by_visible_text(text_to_past)
         log.info('Element selected form dropdown list: ' + text_to_past)
 
+    def select_radio_button(self, text):
+        driver = self.app.driver
+        radio_element = driver.find
+        is_selected = radio_element.is_selected()
+        if not is_selected:
+            radio_element.click()
+        log.info("Selected radio element: " + text)
+
+        # //*[text()='Beluga Brown']
+
 
 __author__ = 'GiSDeCain'
