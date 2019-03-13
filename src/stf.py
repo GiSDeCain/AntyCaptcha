@@ -92,16 +92,21 @@ class Stf:
 
         log.info('Alert button clicked.')
 
-    def switch_to_alert_and_copy_past_text(self):
+    def switch_to_alert_and_copy_text(self):
         driver = self.app.driver
-        time.sleep(2)
+        time.sleep(1)
         alert = driver.switch_to.alert
         alert_text = alert.text
         alert.accept()
+        return alert_text
+
+    def past_alert_text(self, alert_text):
+        driver = self.app.driver
         textbox = driver.find_element_by_id('alertText')
         textbox.clear()
         textbox.send_keys(alert_text)
         log.info('Alert text is: ' + alert_text)
+
 
 
 
