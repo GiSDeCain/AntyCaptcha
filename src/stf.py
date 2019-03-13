@@ -17,8 +17,9 @@ class Stf:
         main_page_title = driver.find_element_by_xpath('//a[@href="/' + sub_locator + '"]').text  # find anchor text using anchor href. It is title of exercise on main page for later assertion.
         url = Config.main_page + Config.stf_url_sub_dir + str(number) + Config.ex_url_param + str(seed)  # Exercise URL
         driver.get(url)
-        stf_title = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'title')))  # Exercise title on exercise page. collected for assertion.
-        assert main_page_title.lower() in stf_title.text.lower()
+        stf_title = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'title'))).text  # Exercise title on exercise page. collected for assertion.
+        print(main_page_title.lower() == stf_title.lower())
+        # assert main_page_title.lower() in stf_title.lower()
         log.info('STF exercise ' + str(number) + ' opened successful')
 
     def open_solution_url(self, seed):
@@ -29,23 +30,32 @@ class Stf:
 
     def stf_solution(self):
         driver = self.app.driver
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 3)
         trail = wait.until(EC.presence_of_element_located((By.ID, 'trail'))).text
         log.info('Trail answer is: ' + trail)
         return trail
 
-    def find_id(self):
+    def find_attribute(self):
         driver = self.app.driver
-        wait = WebDriverWait(driver, 10)
-        btn_id = wait.until(EC.presence_of_element_located((By.XPATH, '//ol/li[1]/em')))
-        log.info('Button id is: ' + btn_id.text)
-        return btn_id.text
+        wait = WebDriverWait(driver, 3)
+        btn_locator = wait.until(EC.presence_of_element_located((By.XPATH, '//ol/li[1]/em')))
+        log.info('Button id is: ' + btn_locator.text)
+        return btn_locator.text
 
     def click_button_by_id(self, btn_id):
         driver = self.app.driver
-        wait = WebDriverWait(driver, 10)
-        btn = wait.until(EC.element_to_be_clickable((By.ID, btn_id))).click()
+        wait = WebDriverWait(driver, 3)
+        btn = wait.until(EC.element_to_be_clickable((By.ID, btn_id)))
+        btn.click()
         log.info('Text of located button is: ' + btn.text)
+
+    def click_button_by_class_name(self, btn_class):
+        driver = self.app.driver
+        wait = WebDriverWait(driver, 3)
+        btn = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, btn_class)))
+        btn.click()
+        log.info('Text of located button is: ' + btn.text)
+
 
 
 __author__ = 'GiSDeCain'

@@ -53,7 +53,7 @@ class Common:
 
     def click_button(self, step_number):
         driver = self.app.driver
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 3)
         btn = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code')
         btn1 = wait.until(EC.element_to_be_clickable((By.ID, 'btnButton1')))
         btn2 = wait.until(EC.element_to_be_clickable((By.ID, 'btnButton2')))
@@ -77,13 +77,13 @@ class Common:
 
     def click_check_solution(self):
         driver = self.app.driver
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 3)
         wait.until(EC.element_to_be_clickable((By.ID, 'solution'))).click()
         log.info('Checking solution...')
 
     def check_trail(self):
         driver = self.app.driver
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 3)
         steps_table = driver.find_elements_by_xpath('//tbody/tr/td')
         len_tabel = len(steps_table) / 3
         solution_text = ''
