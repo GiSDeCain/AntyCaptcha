@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 import logging as log
 from config import Config
+import time
 
 
 class Stf:
@@ -31,6 +32,7 @@ class Stf:
     def stf_solution(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 3)
+        time.sleep(1)
         trail = wait.until(EC.presence_of_element_located((By.ID, 'trail'))).text
         log.info('Trail answer is: ' + trail)
         return trail
@@ -82,6 +84,27 @@ class Stf:
         elif btn_tag == 'h7':
             btn_tag = 'h1'
         wait.until(EC.visibility_of_element_located((By.TAG_NAME, str(btn_tag)))).click()
+
+    def click_alert_button(self):
+        driver = self.app.driver
+        wait = WebDriverWait(driver, 3)
+        wait.until(EC.element_to_be_clickable((By.ID, 'showAlert'))).click()
+
+        log.info('Alert button clicked.')
+
+    def switch_to_alert_and_copy_past_text(self):
+        driver = self.app.driver
+        time.sleep(2)
+        alert = driver.switch_to.alert
+        alert_text = alert.text
+        alert.accept()
+        textbox = driver.find_element_by_id('alertText')
+        textbox.clear()
+        textbox.send_keys(alert_text)
+        log.info('Alert text is: ' + alert_text)
+
+
+
 
 
 __author__ = 'GiSDeCain'

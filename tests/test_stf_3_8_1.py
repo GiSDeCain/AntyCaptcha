@@ -1,2 +1,23 @@
+from config import Config
+
+
+def test_stf_3_8_1_pos(fixture):
+    seed = fixture.common.get_seed()
+    fixture.stf.open_stf_exercise('3-8-1', seed)
+    fixture.stf.click_alert_button()
+    fixture.stf.switch_to_alert_and_copy_past_text()
+    fixture.common.click_check_solution()
+    assert fixture.stf.stf_solution() == Config.test_pass_text
+    fixture.common.back_to_main_page()
+
+
+# def test_stf_3_8_1_neg(fixture):
+#     seed = fixture.common.get_seed()
+#     fixture.stf.open_stf_exercise('3-8-1', seed)
+#     fixture.stf.click_alert_button()
+#
+#     assert fixture.stf.stf_solution() == Config.test_fail_text
+#     fixture.common.back_to_main_page()
+
 
 __author__ = 'GiSDeCain'
