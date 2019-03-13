@@ -1,7 +1,6 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 import logging as log
 from config import Config
 
@@ -31,7 +30,9 @@ class Stf:
     def stf_solution(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
-        return wait.until(EC.presence_of_element_located((By.ID, 'trail'))).text
+        trail = wait.until(EC.presence_of_element_located((By.ID, 'trail'))).text
+        return trail
+        log.info('Trail answer is: ' + trail)
 
 
 __author__ = 'GiSDeCain'
