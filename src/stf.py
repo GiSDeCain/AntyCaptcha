@@ -56,6 +56,12 @@ class Stf:
         btn.click()
         log.info('Text of located button is: ' + btn.text)
 
+    def click_button_by_tag_name(self, btn_tag):
+        driver = self.app.driver
+        wait = WebDriverWait(driver, 3)
+        btn_tag = btn_tag[1:3]
+        btn = wait.until(EC.visibility_of_element_located((By.TAG_NAME, str(btn_tag))))
+        btn.click()
 
 
 __author__ = 'GiSDeCain'

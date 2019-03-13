@@ -1,7 +1,7 @@
 from config import Config
 
 
-def test_stf_3_2_1_pos(fixture):
+def test_stf_3_5_1_pos(fixture):
     seed = fixture.common.get_seed()
     fixture.stf.open_stf_exercise('3-5-1', seed)
     btn_id = fixture.stf.find_attribute()
@@ -11,7 +11,7 @@ def test_stf_3_2_1_pos(fixture):
     fixture.common.back_to_main_page()
 
 
-def test_stf_3_2_1_neg(fixture):
+def test_stf_3_5_1_neg(fixture):
     seed = fixture.common.get_seed()
     fixture.stf.open_stf_exercise('3-5-1', seed)
     fixture.common.click_check_solution()
