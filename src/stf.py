@@ -34,5 +34,18 @@ class Stf:
         log.info('Trail answer is: ' + trail)
         return trail
 
+    def find_id(self):
+        driver = self.app.driver
+        wait = WebDriverWait(driver, 10)
+        btn_id = wait.until(EC.presence_of_element_located((By.XPATH, '//ol/li[1]/em')))
+        log.info('Button id is: ' + btn_id.text)
+        return btn_id.text
+
+    def click_button_by_id(self, btn_id):
+        driver = self.app.driver
+        wait = WebDriverWait(driver, 10)
+        btn = wait.until(EC.element_to_be_clickable((By.ID, btn_id))).click()
+        log.info('Text of located button is: ' + btn.text)
+
 
 __author__ = 'GiSDeCain'
