@@ -63,5 +63,25 @@ class Stf:
         btn = wait.until(EC.visibility_of_element_located((By.TAG_NAME, str(btn_tag))))
         btn.click()
 
+    def fake_click_button_by_tag_name(self, btn_tag):
+        driver = self.app.driver
+        wait = WebDriverWait(driver, 3)
+        btn_tag = btn_tag[1:3]
+        if btn_tag == 'h1':
+            btn_tag = 'h2'
+        elif btn_tag == 'h2':
+            btn_tag = 'h3'
+        elif btn_tag == 'h3':
+            btn_tag = 'h4'
+        elif btn_tag == 'h4':
+            btn_tag = 'h5'
+        elif btn_tag == 'h5':
+            btn_tag = 'h6'
+        elif btn_tag == 'h6':
+            btn_tag = 'h7'
+        elif btn_tag == 'h7':
+            btn_tag = 'h1'
+        wait.until(EC.visibility_of_element_located((By.TAG_NAME, str(btn_tag)))).click()
+
 
 __author__ = 'GiSDeCain'
