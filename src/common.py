@@ -118,13 +118,17 @@ class Common:
         element.select_by_visible_text(text_to_past)
         log.info('Element selected form dropdown list: ' + text_to_past)
 
-    def select_radio_button(self, text):
+    def select_radio_button(self, step_number, text):
         driver = self.app.driver
-        radio_element = driver.find
-        is_selected = radio_element.is_selected()
-        if not is_selected:
-            radio_element.click()
-        log.info("Selected radio element: " + text)
+        dupa = driver.find_element_by_xpath('//body/div/div[' + str(step_number) + '][contains(text(), "' + text + '")]')
+        print('czy ' + str(dupa) + 'jest równe ' + text)
+        # radio_element = driver.find_elements_by_xpath("//div/div[" + str(step_number + 1) + "]")
+        # for i in radio_element:
+        #     if text in radio_element.find_element_by_xpath
+        # is_selected = radio_element.is_selected()
+        # if not is_selected:
+        #     radio_element.click()
+        # log.info("Selected radio element: " + text)
 
         # //*[text()='Beluga Brown']
 
