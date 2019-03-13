@@ -13,11 +13,11 @@ class Stf:
     def open_stf_exercise(self, number, seed):
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
-        sub_locator = Config.stf_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
-        main_page_title = driver.find_element_by_xpath('//a[@href="/' + sub_locator + '"]').text
-        url = Config.main_page + Config.stf_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
+        sub_locator = Config.stf_url_sub_dir + str(number) + Config.ex_url_param + str(seed)  # It is a string for main_page_title xpath locator.
+        main_page_title = driver.find_element_by_xpath('//a[@href="/' + sub_locator + '"]').text  # find anchor text using anchor href. It is title of exercise on main page for later assertion.
+        url = Config.main_page + Config.stf_url_sub_dir + str(number) + Config.ex_url_param + str(seed)  # Exercise URL
         driver.get(url)
-        stf_title = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'title')))
+        stf_title = wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'title')))  # Exercise title on exercise page. collected for assertion.
         assert main_page_title.lower() in stf_title.text.lower()
         log.info('STF exercise ' + str(number) + ' opened successful')
 
@@ -31,8 +31,8 @@ class Stf:
         driver = self.app.driver
         wait = WebDriverWait(driver, 10)
         trail = wait.until(EC.presence_of_element_located((By.ID, 'trail'))).text
-        return trail
         log.info('Trail answer is: ' + trail)
+        return trail
 
 
 __author__ = 'GiSDeCain'
