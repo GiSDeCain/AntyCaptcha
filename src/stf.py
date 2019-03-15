@@ -37,7 +37,7 @@ class Stf:
         log.info('Trail answer is: ' + trail)
         return trail
 
-    def find_attribute(self):
+    def find_attribute_value(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 3)
         btn_locator = wait.until(EC.presence_of_element_located((By.XPATH, '//ol/li[1]/em')))
@@ -100,16 +100,12 @@ class Stf:
         alert.accept()
         return alert_text
 
-    def past_alert_text(self, alert_text):
+    def paste_alert_text(self, alert_text):
         driver = self.app.driver
         textbox = driver.find_element_by_id('alertText')
         textbox.clear()
         textbox.send_keys(alert_text)
         log.info('Alert text is: ' + alert_text)
-
-
-
-
 
 
 __author__ = 'GiSDeCain'

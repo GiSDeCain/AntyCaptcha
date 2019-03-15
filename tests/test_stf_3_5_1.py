@@ -4,7 +4,7 @@ from config import Config
 def test_stf_3_5_1_pos(fixture):
     seed = fixture.common.get_seed()
     fixture.stf.open_stf_exercise('3-5-1', seed)
-    btn_id = fixture.stf.find_attribute()
+    btn_id = fixture.stf.find_attribute_value()
     fixture.stf.click_button_by_id(btn_id)
     fixture.common.click_check_solution()
     assert fixture.common.check_trail() == Config.test_pass_text

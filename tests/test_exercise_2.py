@@ -6,7 +6,7 @@ def test_positive(fixture):
     seed = step.get_seed()
     step.open_exercise(2, seed)
     text = step.copy_text(1)
-    step.past_text('t14', text)
+    step.paste_text('t14', text)
     # step.click_button(2)
     step.click_button_ex2(2)
     step.click_check_solution()
@@ -19,7 +19,7 @@ def test_negative(fixture):
     step = fixture.common
     seed = step.get_seed()
     step.open_exercise(2, seed)
-    step.past_text('t14', 'test')
+    step.paste_text('t14', 'test')
     # step.click_button(2)
     step.click_button_ex2(2)
     step.click_check_solution()

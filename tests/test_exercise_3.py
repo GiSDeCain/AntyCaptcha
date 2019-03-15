@@ -6,7 +6,7 @@ def test_positive(fixture):
     seed = step.get_seed()
     step.open_exercise(3, seed)
     text = step.copy_text(1)
-    step.dropdown_list(text)
+    step.select_from_dropdown_list(text)
     step.click_check_solution()
     assert step.check_trail() == Config.test_pass_text
     step.back_to_main_page()

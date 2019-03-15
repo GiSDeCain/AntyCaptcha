@@ -14,7 +14,6 @@ class Common:
     def open_main_page(self):
         driver = self.app.driver
         driver.get(Config.main_page)
-        assert driver.title == Config.main_page_title
         log.info('Page url: ' + Config.main_page)
 
     def get_seed(self):
@@ -38,7 +37,6 @@ class Common:
         driver = self.app.driver
         url = Config.main_page + Config.ex_url_sub_dir + str(number) + Config.ex_url_param + str(seed)
         driver.get(url)
-        assert ('Exercise ' + str(number)) in driver.find_element_by_class_name('title').text
         log.info('Exercise ' + str(number) + ' opened successful')
 
     # def check_solution(self):  # This one is an experiment and it's not working yet.
@@ -66,14 +64,14 @@ class Common:
 
     def copy_text(self, step_number):
         driver = self.app.driver
-        text_to_past = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code[1]').text
-        return text_to_past
+        text_to_paste = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code[1]').text
+        return text_to_paste
 
-    def past_text(self, input_id, text_to_past):
+    def paste_text(self, input_id, text_to_paste):
         driver = self.app.driver
         textbox = driver.find_element_by_id(str(input_id))
         textbox.clear()
-        textbox.send_keys(text_to_past)
+        textbox.send_keys(text_to_paste)
 
     def click_check_solution(self):
         driver = self.app.driver
@@ -112,7 +110,7 @@ class Common:
             driver.find_element_by_xpath('//*[@id="btnButton2"]').click()
         log.info('Button clicked: ' + btn.text)
 
-    def dropdown_list(self, text_to_past):
+    def select_from_dropdown_list(self, text_to_past):
         driver = self.app.driver
         element = Select(driver.find_element_by_id('s13'))
         element.select_by_visible_text(text_to_past)
