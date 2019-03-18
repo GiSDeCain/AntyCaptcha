@@ -29,7 +29,7 @@ class Stf:
         driver.get(url)
         log.info('Opened solution page using url: ' + url)
 
-    def stf_solution(self):
+    def get_solution(self):
         driver = self.app.driver
         wait = WebDriverWait(driver, 3)
         time.sleep(1)
