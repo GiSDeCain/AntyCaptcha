@@ -128,5 +128,9 @@ class Common:
             text = Common.copy_text(self, i+1)
             Common.select_radio_button(self, i, text)
 
+    def click_all_buttons(self, buttons_number):
+        for i in range(1, buttons_number + 1):
+            Common.click_button(self, i)
+
 
 __author__ = 'GiSDeCain'
