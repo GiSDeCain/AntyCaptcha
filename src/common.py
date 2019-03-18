@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import Select
 import logging as log
 from config import Config
 
+log.basicConfig(level=log.INFO)
+
 
 class Common:
 

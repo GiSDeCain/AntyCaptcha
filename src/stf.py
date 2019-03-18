@@ -5,6 +5,8 @@ import logging as log
 from config import Config
 import time
 
+log.basicConfig(level=log.INFO)
+
 
 class Stf:
 
