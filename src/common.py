@@ -116,19 +116,17 @@ class Common:
         element.select_by_visible_text(text_to_past)
         log.info('Element selected form dropdown list: ' + text_to_past)
 
-    def select_radio_button(self, step_number, text):
+    def select_radio_button(self, group_number, text):
         driver = self.app.driver
-        dupa = driver.find_element_by_xpath('//body/div/div[' + str(step_number) + '][contains(text(), "' + text + '")]')
-        print('czy ' + str(dupa) + 'jest równe ' + text)
-        # radio_element = driver.find_elements_by_xpath("//div/div[" + str(step_number + 1) + "]")
-        # for i in radio_element:
-        #     if text in radio_element.find_element_by_xpath
-        # is_selected = radio_element.is_selected()
-        # if not is_selected:
-        #     radio_element.click()
-        # log.info("Selected radio element: " + text)
+        driver.find_element_by_xpath("((//div[./h5[text() = 'Group " + str(group_number) + ":']]//text())[.='" + text + "']/preceding-sibling::*)[last()]").click()
+        log.info("Selected radio element in group: " + str(group_number))
 
-        # //*[text()='Beluga Brown']
+    def check_steps_and_click_radio_buttons(self):
+        driver = self.app.driver
+        steps_number = len(driver.find_elements_by_xpath('//tbody/tr'))
+        for i in range(steps_number - 1):
+            text = Common.copy_text(self, i+1)
+            Common.select_radio_button(self, i, text)
 
 
 __author__ = 'GiSDeCain'
