@@ -1,5 +1,4 @@
 from config import Config
-import time
 
 
 def test_positive(fixture):
@@ -7,7 +6,6 @@ def test_positive(fixture):
     seed = step.get_seed()
     step.open_exercise(4, seed)
     step.check_steps_and_click_radio_buttons()
-    time.sleep(21)
     step.click_check_solution()
     assert step.check_trail() == Config.test_pass_text
     step.back_to_main_page()
