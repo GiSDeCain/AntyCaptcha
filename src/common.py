@@ -101,7 +101,7 @@ class Common:
     def back_to_main_page(self):
         Common.open_main_page(self)
 
-    def click_button_ex2(self, step_number):
+    def click_button_ex2(self, step_number):  # Thia one is here, because click button not works in ex 2. Dunno why.
         driver = self.app.driver
         btn = driver.find_element_by_xpath('//tbody/tr[' + str(step_number + 1) + ']/td[2]/code')
         if "B1" in btn.text:
